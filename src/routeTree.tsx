@@ -5,6 +5,7 @@ import { Layout } from './components/Layout';
 
 const rootRoute = createRootRoute({
   component: Layout,
+  
 });
 
 const indexRoute = createRoute({
