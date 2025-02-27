@@ -18,7 +18,7 @@ export const FormPage: React.FC = () => {
   const [template, setTemplate] = useState<FormTemplate | null>(null);
 
   useEffect(() => {
-    fetch(`/src/${type}Template.yaml`)
+    fetch(`/${type}Template.yaml`)
       .then((res) => res.text())
       .then((text) => {
         const parsed = parse(text) as FormTemplate;
