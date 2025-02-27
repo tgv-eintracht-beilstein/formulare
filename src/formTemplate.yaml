@@ -1,0 +1,30 @@
+title: Travel Report Form
+pages:
+  - title: Personal Information
+    description: Please provide your contact details
+    type: personal
+    fields:
+      name:
+        label: Full Name
+        type: text
+        required: true
+      email:
+        label: Email Address
+        type: email
+        required: true
+
+  - title: Training Details
+    description: Add all the trainings you held
+    type: trainings
+
+  - title: Legal Notices
+    description: Please review and accept the terms
+    type: legal
+
+  - title: Signature
+    description: Please sign to confirm the information
+    type: signature
+
+  - title: Summary
+    description: Review your submission
+    type: summary

@@ -1,0 +1,30 @@
+title: Reisekostenabrechnung
+pages:
+  - title: Persönliche Informationen
+    description: Bitte geben Sie Ihre persönlichen Informationen ein.
+    type: personal
+    fields:
+      name:
+        label: Vor- & Nachname
+        type: text
+        required: true
+      email:
+        label: E-Mail Adresse
+        type: email
+        required: true
+
+  - title: Reisekosten erfassen
+    description: Bitte geben Sie Ihre Reisekosten ein.
+    type: journeys
+
+  - title: Rechtliche Hinweise
+    description: Bitte die nachfolgenden Rechtliche Hinweise akzeptieren.
+    type: legal
+
+  - title: Signatur
+    description: Bitte geben Sie Ihre Signatur ein.
+    type: signature
+
+  - title: Zusammenfassung
+    description: Bitte überprüfen Sie Ihre Angaben.
+    type: summary
