@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, Outlet } from '@tanstack/react-router';
-import { ClipboardList, Settings, User, HelpCircle } from 'lucide-react';
+import { ClipboardList, Settings, User, HelpCircle, LogIn, LogOut } from 'lucide-react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Layout: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const { loginWithRedirect, user, isAuthenticated, isLoading, logout } = useAuth0();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -19,16 +21,25 @@ export const Layout: React.FC = () => {
                 <span className="ml-2 text-xl font-semibold text-gray-900">TGV | Formulare</span>
               </Link>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-8">
-              <button hidden className="text-gray-500 hover:text-gray-700">
-                <User className="h-5 w-5" />
-              </button>
-              <button hidden className="text-gray-500 hover:text-gray-700">
-                <Settings className="h-5 w-5" />
-              </button>
-              <button hidden className="text-gray-500 hover:text-gray-700">
-                <HelpCircle className="h-5 w-5" />
-              </button>
+            <div className="sm:ml-6 sm:flex sm:items-center sm:space-x-8">
+              {
+                isAuthenticated ? (
+                  <>
+                    <button className="text-gray-500 hover:text-gray-700">
+                      <User className="h-5 w-5" /> {user?.name}
+                    </button>
+
+                    <button id="btn-logout" className="text-gray-500 hover:text-gray-700 whitespace-nowrap" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                      <LogOut className="h-5 w-5" />
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button id="btn-login" className="text-gray-500 hover:text-gray-700 whitespace-nowrap" style={{}} onClick={() => loginWithRedirect()}>
+                      <LogIn className="h-5 w-5" /> Login
+                    </button>
+                  </>
+                )}
             </div>
             <div className="flex items-center sm:hidden">
               <button
@@ -56,18 +67,24 @@ export const Layout: React.FC = () => {
         {isMobileMenuOpen && (
           <div className="sm:hidden">
             <div className="space-y-1 px-4 pb-3 pt-2">
-              <button hidden className="flex w-full items-center px-3 py-2 text-gray-600 hover:bg-gray-100">
-                <User className="h-5 w-5" />
-                <span className="ml-2">Profile</span>
-              </button>
-              <button hidden className="flex w-full items-center px-3 py-2 text-gray-600 hover:bg-gray-100">
-                <Settings className="h-5 w-5" />
-                <span className="ml-2">Settings</span>
-              </button>
-              <button hidden className="flex w-full items-center px-3 py-2 text-gray-600 hover:bg-gray-100">
-                <HelpCircle className="h-5 w-5" />
-                <span className="ml-2">Help</span>
-              </button>
+              {
+                isAuthenticated ? (
+                  <>
+                    <button className="text-gray-500 hover:text-gray-700">
+                      <User className="h-5 w-5" /> {user?.name}
+                    </button>
+
+                    <button id="btn-logout" className="text-gray-500 hover:text-gray-700 whitespace-nowrap" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                      <LogOut className="h-5 w-5" />
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button id="btn-login" className="text-gray-500 hover:text-gray-700 whitespace-nowrap" style={{}} onClick={() => loginWithRedirect()}>
+                      <LogIn className="h-5 w-5" /> Login
+                    </button>
+                  </>
+                )}
             </div>
           </div>
         )}

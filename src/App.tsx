@@ -8,6 +8,7 @@ import { LegalNotices } from './components/LegalNotices';
 import { Signature } from './components/Signature';
 import { Summary } from './components/Summary';
 import type { FormTemplate } from './types';
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const { currentPage, setCurrentPage, formData } = useFormStore();
@@ -72,6 +73,8 @@ function App() {
     alert('Form submitted successfully!');
   };
 
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Navigation */}
@@ -84,7 +87,8 @@ function App() {
                 <span className="ml-2 text-xl font-semibold text-gray-900">TGV | Formulare</span>
               </div>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-8">
+            a
+            <div className="sm:ml-6 sm:flex sm:items-center sm:space-x-8">
               <button className="text-gray-500 hover:text-gray-700">
                 <User className="h-5 w-5" />
               </button>
