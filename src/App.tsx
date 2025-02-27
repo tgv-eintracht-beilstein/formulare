@@ -15,7 +15,7 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    fetch('/src/formTemplate.yaml')
+    fetch('/formTemplate.yaml')
       .then((res) => res.text())
       .then((text) => {
         const parsed = parse(text) as FormTemplate;
